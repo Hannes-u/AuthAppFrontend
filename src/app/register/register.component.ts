@@ -37,13 +37,13 @@ export class RegisterComponent implements OnInit {
         .subscribe({
             next: value => {
               this.isError = false;
-              this.router.navigate(['login']);
+              this.router.navigate(['home']);
               this.form.reset();
             },
             error: err => {
               this.isError = true;
               console.log(err)
-                this.errorMessage = err.error;
+              this.errorMessage = err.error;
               this.form.reset();
             },
           }

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {User} from "../entity/user";
-import {catchError, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 
 @Injectable({
@@ -10,16 +9,33 @@ import {environment} from "../../environments/environment";
 })
 export class UserService {
 
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+
   constructor(private http: HttpClient, public router: Router) {}
 
-  getUserInformation(): Observable<any> {
+  getUserInformation(username: string, password: string): Observable<any> {
+    let usernamePassword = username+':'+password
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + btoa(usernamePassword)
+      })
+    };
+    console.log(password)
     let api = `${environment.apiUrl}/user/getMyInformation`;
-    return this.http.get(api);
-  }
+    console.log(httpOptions)
+    return this.http.get(api,httpOptions);
+    }
 
-  getAllUserInformation(): Observable<any> {
+  getAllUserInformation(username: string, password: string): Observable<any> {
+    let usernamePassword = username+':'+password
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + btoa(usernamePassword)
+      })
+    };
     let api = `${environment.apiUrl}/user/all`;
-    return this.http.get(api);
+    return this.http.get(api,httpOptions);
   }
 }

@@ -8,11 +8,7 @@ import {AuthService} from "./service/auth.service";
 })
 export class AppComponent{
   title = 'AuthAppFrontend';
-  isLoggedIn = false;
   constructor(public authService: AuthService) {
-  }
-  logout(){
-    this.authService.doLogout();
   }
 
 

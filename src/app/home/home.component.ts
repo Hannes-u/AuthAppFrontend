@@ -3,6 +3,9 @@ import {User} from "../entity/user";
 import {UserService} from "../service/user.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../service/auth.service";
+import {MatDialog} from "@angular/material/dialog";
+import {StoreService} from "../service/store.service";
+import {LoginComponent} from "../login/login.component";
 
 @Component({
   selector: 'app-home',
@@ -10,51 +13,15 @@ import {AuthService} from "../service/auth.service";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  users!: User[];
-  currentUser!: User;
-  isAdmin = false;
 
-  constructor(public userService:UserService, public router:Router, public authService:AuthService) { }
+  constructor(public storeService:StoreService, public router:Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getAllData();
   }
 
   getAllData(): void{
-    this.getCurrentUserData();
-    this.getAllUserData();
+    this.dialog.open(LoginComponent);
   }
 
-  getCurrentUserData(): void{
-    this.userService.getUserInformation()
-      .subscribe({
-        next: value => {
-          this.currentUser = value;
-        },
-        error: err => {
-
-          this.router.navigate(["/login"]);
-          this.authService.doLogout();
-        }
-      })
-  }
-
-  getAllUserData(): void{
-    this.userService.getAllUserInformation()
-      .subscribe({
-        next: value => {
-          this.users = value;
-          this.isAdmin = true;
-        },
-        error: err => {
-          if (err.status === 403){
-            this.isAdmin = false;
-          }else {
-            this.router.navigate(["/login"]);
-            this.authService.doLogout();
-          }
-        }
-      })
-  }
 
 }
