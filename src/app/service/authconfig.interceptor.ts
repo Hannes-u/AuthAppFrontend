@@ -1,16 +1,15 @@
-import { Injectable } from "@angular/core";
+import {Inject, Injectable} from "@angular/core";
+import { OKTA_AUTH } from '@okta/okta-angular';
+import { OktaAuth } from '@okta/okta-auth-js';
 import { HttpInterceptor, HttpRequest, HttpHandler } from "@angular/common/http";
-import { AuthService } from "./auth.service";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) { }
+  constructor(@Inject(OKTA_AUTH) public oktaAuth: OktaAuth) { }
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    if (this.authService.isLoggedIn){
-      const authToken = this.authService.getToken();
+      const authToken = this.oktaAuth.getAccessToken();
       req = req.clone({
         headers: req.headers.set('Authorization', `Bearer ${authToken}`),
       });
-    }
     return next.handle(req);
   }
 }

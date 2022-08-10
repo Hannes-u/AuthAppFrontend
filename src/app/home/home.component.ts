@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../entity/user";
 import {UserService} from "../service/user.service";
 import {Router} from "@angular/router";
-import {AuthService} from "../service/auth.service";
 
 @Component({
   selector: 'app-home',
@@ -14,7 +13,7 @@ export class HomeComponent implements OnInit {
   currentUser!: User;
   isAdmin = false;
 
-  constructor(public userService:UserService, public router:Router, public authService:AuthService) { }
+  constructor(public userService:UserService, public router:Router) { }
 
   ngOnInit(): void {
     this.getAllData();
@@ -29,12 +28,11 @@ export class HomeComponent implements OnInit {
     this.userService.getUserInformation()
       .subscribe({
         next: value => {
-          this.currentUser = value;
+          console.log(value);
         },
         error: err => {
 
           this.router.navigate(["/login"]);
-          this.authService.doLogout();
         }
       })
   }
@@ -51,7 +49,6 @@ export class HomeComponent implements OnInit {
             this.isAdmin = false;
           }else {
             this.router.navigate(["/login"]);
-            this.authService.doLogout();
           }
         }
       })

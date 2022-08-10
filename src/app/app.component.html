@@ -3,7 +3,7 @@
     AuthApp
   </h1>
   <span class="example-spacer"></span>
-  <button *ngIf="authService.isLoggedIn" mat-button (click)="logout()">Logout</button>
+  <button *ngIf="oktaAuth.isAuthenticated()" mat-button (click)="logout()">Logout</button>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

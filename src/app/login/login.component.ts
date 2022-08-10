@@ -1,7 +1,7 @@
-import { Input, Component, Output, EventEmitter, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {AuthService} from "../service/auth.service";
+import {Input, Component, Output, EventEmitter, OnInit, Inject} from '@angular/core';
 import {Router} from "@angular/router";
+import {OKTA_AUTH, OktaAuthStateService} from "@okta/okta-angular";
+import { OktaAuth } from '@okta/okta-auth-js';
 
 @Component({
   selector: 'app-login',
@@ -10,41 +10,18 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  isError = false;
-  errorMessage = "";
-
-  constructor(public authService: AuthService, public router: Router) {
+  constructor(@Inject(OKTA_AUTH) public oktaAuth: OktaAuth, public router: Router) {
   }
 
-  ngOnInit(): void {
-    this.isError = false;
-  }
-
-  form: FormGroup = new FormGroup({
-    username: new FormControl('',[Validators.required,Validators.max(255)]),
-    password: new FormControl('',[Validators.required,Validators.max(255)]),
-  });
-
-
-  submit() {
-    if (this.form.valid) {
-      this.authService.signIn(this.form.value.username,this.form.value.password)
-        .subscribe({
-            next: value => {
-              this.isError = false;
-              sessionStorage.setItem('access_token', value.access_token);
-              this.router.navigate(['home']);
-              this.form.reset();
-            },
-          error: err => {
-              console.log(err.status)
-              this.isError = true;
-              this.errorMessage = "Wrong Credentials";
-              this.form.reset();
-          },
-          }
-        )
-
+  async ngOnInit(){
+    let isAuthenticated = await this.oktaAuth.isAuthenticated();
+    if (isAuthenticated){
+      this.router.navigate(['home']);
     }
+  }
+
+
+  login() {
+    this.oktaAuth.signInWithRedirect()
   }
 }

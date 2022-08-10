@@ -16,7 +16,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./service/authconfig.interceptor";
-import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     LoginComponent,
     PageNotFoundComponent,
-    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +35,7 @@ import { RegisterComponent } from './register/register.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {
