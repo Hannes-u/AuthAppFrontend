@@ -17,6 +17,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {RegisterComponent} from './register/register.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {LoginComponent} from "./login/login.component";
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {LoginComponent} from "./login/login.component";
     HomeComponent,
     PageNotFoundComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

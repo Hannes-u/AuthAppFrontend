@@ -38,4 +38,16 @@ export class UserService {
     let api = `${environment.apiUrl}/user/all`;
     return this.http.get(api,httpOptions);
   }
+
+  changePassword(username: string, oldPassword: string, newPassword:string): Observable<any> {
+    let usernamePassword = username+':'+oldPassword
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + btoa(usernamePassword)
+      })
+    };
+    let api = `${environment.apiUrl}/user/changePassword`;
+    return this.http.put(api,{"password":newPassword},httpOptions);
+  }
 }

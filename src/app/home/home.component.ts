@@ -6,6 +6,7 @@ import {AuthService} from "../service/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {StoreService} from "../service/store.service";
 import {LoginComponent} from "../login/login.component";
+import {ChangePasswordComponent} from "../change-password/change-password.component";
 
 @Component({
   selector: 'app-home',
@@ -23,5 +24,8 @@ export class HomeComponent implements OnInit {
     this.dialog.open(LoginComponent);
   }
 
+  changePassword(): void{
+    this.dialog.open(ChangePasswordComponent)
+  }
 
 }

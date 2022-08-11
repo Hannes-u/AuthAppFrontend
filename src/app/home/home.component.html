@@ -1,37 +1,31 @@
-<button type="submit" style="margin-top: 5px; alignment: right" color="secondary" (click)="getAllData()" mat-raised-button>Load Data</button>
+<button type="submit" style="margin-top: 5px;" color="secondary" (click)="getAllData()" mat-raised-button>Load Data</button>
+<button type="submit" style="margin-top: 5px; float: right;" color="secondary" (click)="changePassword()" mat-raised-button>Change Password</button>
+
+
+
 <h1 style="text-align: center">YOUR USER DATA</h1>
-<table style="margin-left: auto; margin-right: auto">
+<table style="margin-right: auto; margin-left: auto">
+
   <tr style="text-align: left">
     <th>Username</th>
     <th>Email</th>
-    <th>Roles</th>
   </tr>
   <tr *ngIf="storeService.getUserInformation()">
     <td>{{storeService.getUserInformation().username}}</td>
     <td>{{storeService.getUserInformation().email}}</td>
-    <td>
-      <div *ngFor="let role of storeService.getUserInformation().roles">{{role.name}}</div>
-      </td>
   </tr>
 </table>
 
-<div *ngIf="storeService.getIsAdmin()" >
 <h1 style="text-align: center; margin-top: 50px">USER DATA OF ALL USERS</h1>
 <table style="margin-left: auto; margin-right: auto" >
   <tr style="text-align: left">
     <th>Username</th>
     <th>Email</th>
-    <th>Roles</th>
   </tr>
   <tr *ngFor="let user of storeService.getAllUserInformation()">
     <td>{{user.username}}</td>
     <td>{{user.email}}</td>
-    <td><div *ngFor="let role of user.roles">{{role.name}},</div></td>
   </tr>
 </table>
-</div>
-
-
-
 
 

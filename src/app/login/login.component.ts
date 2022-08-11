@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       this.getCurrentUserData(this.form.value.username,this.form.value.password);
       this.getAllUserData(this.form.value.username,this.form.value.password);
+      this.form.reset()
     }
 
   }
@@ -63,16 +64,9 @@ export class LoginComponent implements OnInit {
           this.message= "Request was successful! You can close the Dialog now :)";
         },
         error: err => {
-          if (err.status === 403){
-            this.storeService.setIsAdmin(false);
-            this.isError = false;
-            this.isSucess = true;
-            this.message= "Request was successful! You can close the Dialog now :)";
-          }else {
             this.isError = true;
             this.message= "Wrong Credentials!";
           }
-        }
       })
   }
 }
