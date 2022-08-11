@@ -11,7 +11,6 @@ import {Router} from "@angular/router";
 export class HomeComponent implements OnInit {
   users!: User[];
   currentUser!: User;
-  isAdmin = false;
 
   constructor(public userService:UserService, public router:Router) { }
 
@@ -28,10 +27,9 @@ export class HomeComponent implements OnInit {
     this.userService.getUserInformation()
       .subscribe({
         next: value => {
-          console.log(value);
+          this.currentUser = value;
         },
         error: err => {
-
           this.router.navigate(["/login"]);
         }
       })
@@ -42,14 +40,9 @@ export class HomeComponent implements OnInit {
       .subscribe({
         next: value => {
           this.users = value;
-          this.isAdmin = true;
         },
         error: err => {
-          if (err.status === 403){
-            this.isAdmin = false;
-          }else {
             this.router.navigate(["/login"]);
-          }
         }
       })
   }

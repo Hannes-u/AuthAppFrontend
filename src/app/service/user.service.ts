@@ -14,7 +14,7 @@ export class UserService {
   constructor(private http: HttpClient, public router: Router) {}
 
   getUserInformation(): Observable<any> {
-    let api = `${environment.apiUrl}/user/getMyInformation`;
+    let api = `${environment.apiUrl}/user/getAndMaybeCreateMyInformation`;
     return this.http.get(api);
   }
 

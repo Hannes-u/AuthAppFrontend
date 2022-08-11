@@ -4,26 +4,22 @@
   <tr style="text-align: left">
     <th>Username</th>
     <th>Email</th>
-    <th>Roles</th>
   </tr>
   <tr *ngIf="currentUser">
     <td>{{currentUser.username}}</td>
     <td>{{currentUser.email}}</td>
-    <td>{{currentUser.roles}}</td>
   </tr>
 </table>
-<div *ngIf="isAdmin">
+<div>
 <h1 style="text-align: center; margin-top: 50px">USER DATA OF ALL USERS</h1>
 <table style="margin-left: auto; margin-right: auto">
   <tr style="text-align: left">
     <th>Username</th>
     <th>Email</th>
-    <th>Roles</th>
   </tr>
   <tr *ngFor="let user of users">
     <td>{{user.username}}</td>
     <td>{{user.email}}</td>
-    <td>{{user.roles.toString()}}</td>
   </tr>
 </table>
 </div>
