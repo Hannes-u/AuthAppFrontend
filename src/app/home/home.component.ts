@@ -3,6 +3,9 @@ import {User} from "../entity/user";
 import {UserService} from "../service/user.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../service/auth.service";
+import {Dialog} from "@angular/cdk/dialog";
+import {MatDialog} from "@angular/material/dialog";
+import {ChangePasswordComponent} from "../change-password/change-password.component";
 
 @Component({
   selector: 'app-home',
@@ -14,7 +17,7 @@ export class HomeComponent implements OnInit {
   currentUser!: User;
   isAdmin = false;
 
-  constructor(public userService:UserService, public router:Router, public authService:AuthService) { }
+  constructor(public userService:UserService, public router:Router, public authService:AuthService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getAllData();
@@ -57,4 +60,7 @@ export class HomeComponent implements OnInit {
       })
   }
 
+  changePassword() {
+    this.dialog.open(ChangePasswordComponent);
+  }
 }

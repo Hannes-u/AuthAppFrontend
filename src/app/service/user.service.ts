@@ -22,4 +22,9 @@ export class UserService {
     let api = `${environment.apiUrl}/user/all`;
     return this.http.get(api);
   }
+
+  changePassword(oldPassword: string, newPassword:string): Observable<any> {
+    let api = `${environment.apiUrl}/user/changePassword`;
+    return this.http.put(api,{"oldPassword": oldPassword,"newPassword":newPassword});
+  }
 }
