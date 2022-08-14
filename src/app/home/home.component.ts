@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
     this.userService.getUserInformation()
       .subscribe({
         next: value => {
+          console.log(value)
           this.currentUser = value;
         },
         error: err => {
