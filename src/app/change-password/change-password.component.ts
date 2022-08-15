@@ -26,8 +26,8 @@ export class ChangePasswordComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.max(255)]),
-    oldPassword: new FormControl('', [Validators.required, Validators.max(255)]),
-    newPassword: new FormControl('', [Validators.required, Validators.max(255)]),
+    oldPassword: new FormControl('', [Validators.required, Validators.max(125)]),
+    newPassword: new FormControl('', [Validators.required, Validators.max(125)]),
   });
 
 
@@ -44,6 +44,7 @@ export class ChangePasswordComponent implements OnInit {
     this.userService.changePassword(username,oldPassword,newPassword)
       .subscribe({
         next: value => {
+          /* Falls die Anfrage zum änder des Passwort erfolgreich war, wird eine Erfolgsmeldung ausgegeben*/
           this.message = "Password Change was successful!";
           this.isError = false;
           this.isSucess = true;
@@ -52,9 +53,11 @@ export class ChangePasswordComponent implements OnInit {
           this.isSucess = false;
           this.isError = true;
           if (err.status == 400){
+            /* Falls das neue Passwort nicht den Passwort Regeln entsprechend war, wird eine Fehlermeldung mit allen Verstößen ausgegeben*/
             this.message = "New Passord dosent match the Passoword Policy! \n" + err.error;
           }else {
-            this.message = "Wrong Old Password!"
+            /* Falls es nicht an den Passwortregeln lag, wird ausgegeben, dass die Credentials falsch sind.*/
+            this.message = "Wrong Credentials!"
           }
         }
       })

@@ -20,10 +20,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /* Dialog zum holen der Dtaen aus dem Backend wird geöffnet. */
   getAllData(): void{
     this.dialog.open(LoginComponent);
   }
 
+  /* Dialog zum ändern von Passwörtern wird geöffnet */
   changePassword(): void{
     this.dialog.open(ChangePasswordComponent)
   }

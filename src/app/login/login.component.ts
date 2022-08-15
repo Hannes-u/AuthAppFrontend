@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
 
 
 
+  /* Mithilfe der im Dialog eingeben Anmeldedaten werden 2 Requests um die Nutzerdaten, aus dem Backend zu bekommen geschickt*/
   submit() {
     if (this.form.valid) {
       this.getCurrentUserData(this.form.value.username,this.form.value.password);
@@ -44,9 +45,12 @@ export class LoginComponent implements OnInit {
     this.userService.getUserInformation(username, password)
       .subscribe({
         next: value => {
+          /* Falls, dass holen der Daten erfolgreich war, werden diese in einem Store gespeichert.
+          * die Hauptkomponente kann sich die Daten anschließend aus dem Store ziehen*/
           this.storeService.setUserInformation(value);
         },
         error: err => {
+          // Falls die Anfrage einen Fehler als Antwort bekommt, wird ausgegebn dass die Credentials falsch waren.
           this.isError = true;
           this.message= "Wrong Credentials!"
           }
@@ -57,13 +61,15 @@ export class LoginComponent implements OnInit {
     this.userService.getAllUserInformation(username, password)
       .subscribe({
         next: value => {
+          /* Falls, dass holen der Daten erfolgreich war, werden diese in einem Store gespeichert.
+          * die Hauptkomponente kann sich die Daten anschließend aus dem Store ziehen*/
           this.storeService.setAllUserInformation(value);
-          this.storeService.setIsAdmin(true);
           this.isSucess = true;
           this.isError = false;
           this.message= "Request was successful! You can close the Dialog now :)";
         },
         error: err => {
+          // Falls die Anfrage einen Fehler als Antwort bekommt, wird ausgegebn dass die Credentials falsch waren.
             this.isError = true;
             this.message= "Wrong Credentials!";
           }

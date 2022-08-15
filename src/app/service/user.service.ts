@@ -14,6 +14,7 @@ export class UserService {
   constructor(private http: HttpClient, public router: Router) {}
 
   getUserInformation(username: string, password: string): Observable<any> {
+    /* Setzen von Basic Auth Header*/
     let usernamePassword = username+':'+password
     const httpOptions = {
       headers: new HttpHeaders({
@@ -28,6 +29,7 @@ export class UserService {
     }
 
   getAllUserInformation(username: string, password: string): Observable<any> {
+    /* Setzen von Basic Auth Header*/
     let usernamePassword = username+':'+password
     const httpOptions = {
       headers: new HttpHeaders({
@@ -40,6 +42,7 @@ export class UserService {
   }
 
   changePassword(username: string, oldPassword: string, newPassword:string): Observable<any> {
+    /* Setzen von Basic Auth Header*/
     let usernamePassword = username+':'+oldPassword
     const httpOptions = {
       headers: new HttpHeaders({

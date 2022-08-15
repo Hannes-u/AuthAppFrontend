@@ -42,7 +42,6 @@ export class RegisterComponent implements OnInit {
             },
             error: err => {
               this.isError = true;
-              console.log(err)
               this.errorMessage = err.error;
               this.form.reset();
             },
