@@ -14,7 +14,9 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    /* Der AuthGuard kann bei Komponenten hinzugefügt werden, für die nur nach Login zugriff gewährt werden soll.*/
     if (!this.authService.isLoggedIn) {
+      /* Falls kein Access Token vorhanden ist, wird wieder auf die Anmeldeseite redirected.*/
       this.router.navigate(['login'])
     }
     return true;

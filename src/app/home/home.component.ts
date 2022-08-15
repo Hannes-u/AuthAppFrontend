@@ -15,7 +15,6 @@ import {ChangePasswordComponent} from "../change-password/change-password.compon
 export class HomeComponent implements OnInit {
   users!: User[];
   currentUser!: User;
-  isAdmin = false;
 
   constructor(public userService:UserService, public router:Router, public authService:AuthService, public dialog: MatDialog) { }
 
@@ -35,7 +34,7 @@ export class HomeComponent implements OnInit {
           this.currentUser = value;
         },
         error: err => {
-
+          /* Falls der Access Token ungültig ist, wird wieder auf die Anmeldeseite redirected und der akktuelle Acess Token gelöscht.*/
           this.router.navigate(["/login"]);
           this.authService.doLogout();
         }
@@ -47,15 +46,11 @@ export class HomeComponent implements OnInit {
       .subscribe({
         next: value => {
           this.users = value;
-          this.isAdmin = true;
         },
         error: err => {
-          if (err.status === 403){
-            this.isAdmin = false;
-          }else {
+          /* Falls der Access Token ungültig ist, wird wieder auf die Anmeldeseite redirected und der akktuelle Acess Token gelöscht.*/
             this.router.navigate(["/login"]);
             this.authService.doLogout();
-          }
         }
       })
   }
