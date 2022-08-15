@@ -14,13 +14,14 @@ export class LoginComponent implements OnInit {
   }
 
   async ngOnInit(){
+    /* Falls der Nutzer schon authenthifiziert ist, wird er direkt auf die Hompage weitergeleitet */
     let isAuthenticated = await this.oktaAuth.isAuthenticated();
     if (isAuthenticated){
       this.router.navigate(['home']);
     }
   }
 
-
+  /* Methode um den User zum Authorization Server zu schicken.*/
   login() {
     this.oktaAuth.signInWithRedirect()
   }

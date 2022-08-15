@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
 
   constructor(public userService:UserService, public router:Router) { }
 
+  /* Wenn die Komponente aufgerufen wird, werden alle Daten für die Tabellen vom Backend geholt. */
   ngOnInit(): void {
     this.getAllData();
   }
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit {
           this.currentUser = value;
         },
         error: err => {
-          this.router.navigate(["/login"]);
+         console.log(err);
         }
       })
   }
@@ -43,7 +44,7 @@ export class HomeComponent implements OnInit {
           this.users = value;
         },
         error: err => {
-            this.router.navigate(["/login"]);
+            console.log(err);
         }
       })
   }

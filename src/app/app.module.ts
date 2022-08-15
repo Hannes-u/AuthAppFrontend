@@ -9,7 +9,6 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatListModule} from "@angular/material/list";
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -22,7 +21,6 @@ import {AuthInterceptor} from "./service/authconfig.interceptor";
     AppComponent,
     HomeComponent,
     LoginComponent,
-    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
