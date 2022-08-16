@@ -22,9 +22,7 @@ export class UserService {
         'Authorization': 'Basic ' + btoa(usernamePassword)
       })
     };
-    console.log(password)
     let api = `${environment.apiUrl}/user/getMyInformation`;
-    console.log(httpOptions)
     return this.http.get(api,httpOptions);
     }
 

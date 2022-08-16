@@ -8,7 +8,6 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatListModule} from "@angular/material/list";
 import { HomeComponent } from './home/home.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -23,7 +22,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
   declarations: [
     AppComponent,
     HomeComponent,
-    PageNotFoundComponent,
     RegisterComponent,
     LoginComponent,
     ChangePasswordComponent
