@@ -4,6 +4,7 @@ import {LoginComponent} from "./login/login.component";
 import {HomeComponent} from "./home/home.component";
 import {OKTA_CONFIG, OktaAuthGuard, OktaAuthModule, OktaCallbackComponent} from "@okta/okta-angular";
 import {OktaAuth} from "@okta/okta-auth-js";
+import {AuthGuard} from "./guard/auth.guard";
 
 
 /* Konfiguration, mit den Werten des erstellten authorization server*/
@@ -19,7 +20,7 @@ const oktaConfig = {
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [OktaAuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   /* Komponente auf die vom Authorization Server Redirected wird*/
   {
     path: 'login/callback',
