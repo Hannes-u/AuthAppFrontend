@@ -28,5 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Beispiel für Starten mit Docker
 
-docker build -t auth-app-frontend .
-docker run -p 4200:4200 --name auth_app_frontend auth-app-frontend
+Docker Image builden: docker build -t auth-app-frontend .     Docker Container starten: docker run -p 4200:4200 --name auth_app_frontend auth-app-frontend
